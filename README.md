@@ -20,6 +20,7 @@ This project analyzes the **cab_rides** dataset to predict the price of a given 
 
 1. **Preprocessing**
     * Removes all rows with missing output feature *price*
+    * scales the numerical fields *distance* and surge_multiplier*
     * Uses KNN Imputation to handle missing input input features *distance*, and *surge_multiplier*
     * Filles in missing data for the *cab_type* data with the most frequent value.
 
