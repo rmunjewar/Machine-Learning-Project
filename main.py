@@ -25,6 +25,7 @@ def main():
         print("-------------------------------------------------------\n")
 
         # KNN Model
+        print("KNN MODEL:\n")
         model = train_knn_regression(preprocessed_data)
         print("NOTE: KNN Regression model training completed successfully.\n")
         print("-------------------------------------------------------\n")
@@ -34,6 +35,7 @@ def main():
         # print("Model evaluation completed successfully.")
 
         # Random Forest Model
+        print("RANDOM FOREST MODEL:\n")
         model = train_random_forest(preprocessed_data)
         print("NOTE: Random Forest Model training completed successfully.\n")
         print("-------------------------------------------------------\n")
@@ -42,6 +44,7 @@ def main():
     
 
         # Linear Regression Model
+        print("LINEAR REGRESSION MODEL:\n")
         model = train_linear_regression(preprocessed_data)
         print("NOTE: LInear Regression model training completed successfully.\n")
         print("-------------------------------------------------------\n")
