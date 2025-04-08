@@ -60,9 +60,9 @@ def validate_knn_model(model, data):
     mse = mean_squared_error(y, y_pred)
     r2 = r2_score(y, y_pred)
 
-    print(f"Best Hyperparameters: {best_params}")
-    print(f"Validation Mean Squared Error: {mse:.2f}")
-    print(f"Validation R^2 Score: {r2:.2f}")
+    print(f"KNN Model - Best Hyperparameters: {best_params}")
+    print(f"KNN Model - Validation Mean Squared Error: {mse:.2f}")
+    print(f"KNN Model - Validation R^2 Score: {r2:.2f}")
 
     return best_model
 
