@@ -1,6 +1,8 @@
 import pandas as pd
+import kagglehub
 import numpy as np
 from sklearn.impute import KNNImputer
+from sklearn.preprocessing import StandardScaler, LabelEncoder
 
 def preprocess_data(file_path):
     """
@@ -16,7 +18,7 @@ def preprocess_data(file_path):
     data = pd.read_csv(file_path)
 
     # Keep only the relevant columns
-    columns_to_keep = ['price', 'distance', 'surge_multiplier', 'cab_type']
+    columns_to_keep = ['price', 'distance', 'surge_multiplier', 'cab_type', 'product_id']
     data = data[columns_to_keep]
 
     # Drop rows where the target variable 'price' is missing
@@ -30,5 +32,17 @@ def preprocess_data(file_path):
     if data['cab_type'].isnull().any():
         most_frequent_cab_type = data['cab_type'].mode()[0]
         data['cab_type'] = data['cab_type'].fillna(most_frequent_cab_type)
+
+    # scaler - scale numerical features (distance, surge_multiplier)
+    scaler = StandardScaler()
+    data[['distance', 'surge_multiplier']] = scaler.fit_transform(data[['distance', 'surge_multiplier']])
+
+    # encode the categorical 'cab_type' feature
+    le = LabelEncoder()
+    data['cab_type'] = le.fit_transform(data['cab_type'])
+
+    if data['product_id'].dtype == 'object':  # for categorical
+        data['product_id'] = le.fit_transform(data['product_id'])
+
 
     return data
