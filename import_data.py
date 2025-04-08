@@ -15,8 +15,7 @@ def preprocess_data(file_path):
         pd.DataFrame: Preprocessed dataset.
     """
     # Load the dataset
-    path = kagglehub.dataset_download("ravi72munde/uber-lyft-cab-prices")
-    data = pd.read_csv(path)
+    data = pd.read_csv(file_path)
 
     # Keep only the relevant columns
     columns_to_keep = ['price', 'distance', 'surge_multiplier', 'cab_type', 'product_id']
