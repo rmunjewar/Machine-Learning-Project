@@ -23,16 +23,16 @@ def train_linear_regression(data):
 
     return model
 
-# def test_linear_regression(model, data):
-#     data = pd.get_dummies(data, columns=['cab_type'], drop_first=True)
+def test_linear_regression(model, data):
+    data = pd.get_dummies(data, columns=['cab_type'], drop_first=True)
 
-#     X = data.drop(columns=['price'])
-#     y = data['price']
+    X = data.drop(columns=['price'])
+    y = data['price']
 
-#     y_pred = model.predict(X)
+    y_pred = model.predict(X)
 
-#     mse = mean_squared_error(y, y_pred)
-#     r2 = r2_score(y, y_pred)
+    mse = mean_squared_error(y, y_pred)
+    r2 = r2_score(y, y_pred)
 
-#     pprint(f"Linear Regression - Training MSE: {mse:.2f}")
-#     print(f"Linear Regression - R^2: {r2:.2f}")
+    pprint(f"Linear Regression - Training MSE: {mse:.2f}")
+    print(f"Linear Regression - R^2: {r2:.2f}")

@@ -24,31 +24,31 @@ def train_random_forest(data):
 
     return rf
 
-# def validate_random_forest(model, data):
-#     data = pd.get_dummies(data, columns=['cab_type'], drop_first=True)
+def validate_random_forest(model, data):
+    data = pd.get_dummies(data, columns=['cab_type'], drop_first=True)
 
-#     X = data.drop(columns=['price'])
-#     y = data['price']
+    X = data.drop(columns=['price'])
+    y = data['price']
 
-#     param_grid = {
-#         'n_estimators': [50, 100, 200],
-#         'max_depth': [None, 10, 20],
-#         'min_samples_split': [2, 5]
-#     }
+    param_grid = {
+        'n_estimators': [50, 100, 200],
+        'max_depth': [None, 10, 20],
+        'min_samples_split': [2, 5]
+    }
 
-#     grid_search = GridSearchCV(model, param_grid, cv=5, scoring='neg_mean_squared_error')
-#     grid_search.fit(X, y)
+    grid_search = GridSearchCV(model, param_grid, cv=5, scoring='neg_mean_squared_error')
+    grid_search.fit(X, y)
 
-#     best_model = grid_search.best_estimator_
-#     best_params = grid_search.best_params_
+    best_model = grid_search.best_estimator_
+    best_params = grid_search.best_params_
 
-#     y_pred = best_model.predict(X)
+    y_pred = best_model.predict(X)
 
-#     mse = mean_squared_error(y, y_pred)
-#     r2 = r2_score(y, y_pred)
+    mse = mean_squared_error(y, y_pred)
+    r2 = r2_score(y, y_pred)
 
-#     print(f" Random Forest - Best Hyperparameters: {best_params}")
-#     print(f"Random Forest - Validation Mean Squared Error: {mse:.2f}")
-#     print(f"Random Forest - Validation R^2 Score: {r2:.2f}")
+    print(f" Random Forest - Best Hyperparameters: {best_params}")
+    print(f"Random Forest - Validation Mean Squared Error: {mse:.2f}")
+    print(f"Random Forest - Validation R^2 Score: {r2:.2f}")
 
-#     return best_model
+    return best_model

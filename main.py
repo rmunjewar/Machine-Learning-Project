@@ -1,8 +1,8 @@
 import os
 from import_data import preprocess_data
 from knn_regression import train_knn_regression, validate_knn_model, test_knn_model
-from random_forest import train_random_forest
-from linear_regression import train_linear_regression
+from random_forest import train_random_forest, validate_random_forest
+from linear_regression import train_linear_regression, test_linear_regression
 
 
 def main():
@@ -37,7 +37,6 @@ def main():
         print("Random Forest Model")
         model_rf = train_random_forest(preprocessed_data)
         tuned_rf = validate_random_forest(model_rf, preprocessed_data)
-        test_random_forest(tuned_rf, preprocessed_data)
 
         # Linear REgression
         print("Linear Regression Model")
