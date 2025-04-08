@@ -34,5 +34,5 @@ def test_linear_regression(model, data):
     mse = mean_squared_error(y, y_pred)
     r2 = r2_score(y, y_pred)
 
-    pprint(f"Linear Regression - Training MSE: {mse:.2f}")
+    print(f"Linear Regression - Training MSE: {mse:.2f}")
     print(f"Linear Regression - R^2: {r2:.2f}")
