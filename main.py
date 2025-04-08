@@ -1,8 +1,8 @@
 import os
 from import_data import preprocess_data
 from knn_regression import train_knn_regression, validate_knn_model, test_knn_model
-from random_forest import train_random_forest
-from linear_regression import train_linear_regression
+from random_forest import train_random_forest, validate_random_forest
+from linear_regression import train_linear_regression, test_linear_regression
 
 
 def main():
@@ -18,31 +18,38 @@ def main():
 
     # Preprocess the data
     try:
+        # Overall
         preprocessed_data = preprocess_data(dataset_path)
-        print("Data preprocessing completed successfully.")
+        print("-------------------------------------------------------\n")
+        print("NOTE: Data preprocessing completed successfully.\n")
+        print("-------------------------------------------------------\n")
+
+        # KNN Model
+        print("KNN MODEL:\n")
         model = train_knn_regression(preprocessed_data)
-        print("KNN Regression model training completed successfully.")
-        tuned_model = validate_knn_model(model, preprocessed_data)
-        print("KNN model validation and hyperparameter tuning completed successfully.")
-        test_knn_model(tuned_model, preprocessed_data)
-        print("Model evaluation completed successfully.")
+        print("NOTE: KNN Regression model training completed successfully.\n")
+        print("-------------------------------------------------------\n")
+        # tuned_model = validate_knn_model(model, preprocessed_data)
+        # print("KNN model validation and hyperparameter tuning completed successfully.")
+        # test_knn_model(tuned_model, preprocessed_data)
+        # print("Model evaluation completed successfully.")
 
-         # Train and evaluate KNN
-        print("KNN Model")
-        model_knn = train_knn_regression(preprocessed_data)
-        tuned_knn = validate_knn_model(model_knn, preprocessed_data)
-        test_knn_model(tuned_knn, preprocessed_data)
+        # Random Forest Model
+        print("RANDOM FOREST MODEL:\n")
+        model = train_random_forest(preprocessed_data)
+        print("NOTE: Random Forest Model training completed successfully.\n")
+        print("-------------------------------------------------------\n")
+        # tuned_model = validate_random_forest(model, preprocessed_data)
+        # print("Random Forest Model validation and hyperparameter tuning completed successfully.")
+    
 
-        # Train and evaluate Random Forest
-        print("Random Forest Model")
-        model_rf = train_random_forest(preprocessed_data)
-        tuned_rf = validate_random_forest(model_rf, preprocessed_data)
-        test_random_forest(tuned_rf, preprocessed_data)
-
-        # Linear REgression
-        print("Linear Regression Model")
-        model_lr = train_linear_regression(preprocessed_data)
-        test_linear_regression(model_lr, preprocessed_data)
+        # Linear Regression Model
+        print("LINEAR REGRESSION MODEL:\n")
+        model = train_linear_regression(preprocessed_data)
+        print("NOTE: LInear Regression model training completed successfully.\n")
+        print("-------------------------------------------------------\n")
+        # test_linear_regression(tuned_model, preprocessed_data)
+        # print("Linear Regression model evaluation completed successfully.")
 
 
     except Exception as e:
