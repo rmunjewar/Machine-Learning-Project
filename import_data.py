@@ -1,5 +1,4 @@
 import pandas as pd
-import kagglehub
 import numpy as np
 from sklearn.impute import KNNImputer
 from sklearn.preprocessing import StandardScaler, LabelEncoder

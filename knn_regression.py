@@ -17,16 +17,14 @@ def train_knn_regression(data):
 
     X = data.drop(columns=['price'])
     y = data['price']
-
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=42)
-
+    
     knn = KNeighborsRegressor(n_neighbors=5)
-    knn.fit(X_train, y_train)
+    knn.fit(X, y)
 
-    y_train_pred = knn.predict(X_train)
+    y_pred = knn.predict(X)
 
-    mse = mean_squared_error(y_train, y_train_pred)
-    r2 = r2_score(y_train, y_train_pred)
+    mse = mean_squared_error(y, y_pred)
+    r2 = r2_score(y, y_pred)
 
     print(f"Training Mean Squared Error: {mse:.2f}")
     print(f"Training R^2 Score: {r2:.2f}")
