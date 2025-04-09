@@ -2,7 +2,7 @@ import os
 from sklearn.model_selection import train_test_split
 from gradient_boosting import train_gradient_boosting, tune_gradient_boosting
 from import_data import preprocess_data
-from knn_regression import train_knn_regression, validate_knn_model, test_knn_model
+from knn_regression import train_knn_regression, validate_knn_model
 from random_forest import train_random_forest, validate_random_forest
 from linear_regression import train_linear_regression, test_linear_regression
 
