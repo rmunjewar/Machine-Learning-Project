@@ -44,7 +44,6 @@
             n_neighbors (5–20)
             weights (uniform, distance)
        - GridSearchCV used for optimal configuration.
-       - Outputs training MSE, R², and best parameters
 
     **Random Forest Regressor**
        - An ensemble method using decision trees.
@@ -52,6 +51,7 @@
             n_estimators (50–200)
             max_depth (None, 10, 20)
             min_samples_split (2, 5)
+       - Outputs training MSE, R², and best parameters
 
     **Gradient Boosting Regressor**
        - Boosted ensemble of shallow trees.
