@@ -36,39 +36,34 @@ def main():
         print("-------------------------------------------------------\n")
 
         # KNN Model
-        # print("KNN MODEL:\n")
-        # model = train_knn_regression(train_data)
-        # print("NOTE: KNN Regression model training completed successfully.\n")
-        # print("-------------------------------------------------------\n")
-        # tuned_model = validate_knn_model(model, validation_data)
-        # print("KNN model validation and hyperparameter tuning completed successfully.")
-        # test_knn_model(tuned_model, test_data)
-        # print("Model evaluation completed successfully.")
-        # print("-------------------------------------------------------\n")
+        print("KNN MODEL:\n")
+        knn = train_knn_regression(train_data)
+        print("NOTE: KNN Regression model training completed successfully.\n")
+        print("-------------------------------------------------------\n")
+        best_knn = validate_knn_model(knn, validation_data)
+        print("KNN model validation and hyperparameter tuning completed successfully.")
+        print("-------------------------------------------------------\n")
 
         # Gradient Boosting
         print("GRADIENT BOOSTING:\n")
-        model = train_gradient_boosting(train_data)
+        gradient = train_gradient_boosting(train_data)
         print("NOTE: Gradient Boosting model training completed successfully.\n")
-        best_model = tune_gradient_boosting(model, validation_data)
+        best_gradieent = tune_gradient_boosting(gradient, validation_data)
         print("-------------------------------------------------------\n")
 
         # Random Forest Model
-        # print("RANDOM FOREST MODEL:\n")
-        # model = train_random_forest(train_data)
-        # print("NOTE: Random Forest Model training completed successfully.\n")
-        # print("-------------------------------------------------------\n")
-        # tuned_model = validate_random_forest(model, validation_data)
-        # print("Random Forest Model validation and hyperparameter tuning completed successfully.")
-    
+        print("RANDOM FOREST MODEL:\n")
+        forest = train_random_forest(train_data)
+        print("NOTE: Random Forest Model training completed successfully.\n")
+        print("-------------------------------------------------------\n")
+        best_forest = validate_random_forest(forest, validation_data)
+        print("Random Forest Model validation and hyperparameter tuning completed successfully.")
 
         # Linear Regression Model
-        # print("LINEAR REGRESSION MODEL:\n")
-        # model = train_linear_regression(train_data)
-        # print("NOTE: Linear Regression model training completed successfully.\n")
-        # print("-------------------------------------------------------\n")
-        # test_linear_regression(tuned_model, test_data)
-        # print("Linear Regression model evaluation completed successfully.")
+        print("LINEAR REGRESSION MODEL:\n")
+        linear = train_linear_regression(train_data)
+        print("NOTE: Linear Regression model training completed successfully.\n")
+        print("-------------------------------------------------------\n")
 
 
     except Exception as e:
