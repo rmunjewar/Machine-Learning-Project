@@ -23,7 +23,7 @@ def train_linear_regression(data):
 
     return model
 
-def test_linear_regression(model, data):
+def validate_linear_regression(model, data):
     data = pd.get_dummies(data, columns=['cab_type'], drop_first=True)
 
     X = data.drop(columns=['price'])
@@ -34,5 +34,7 @@ def test_linear_regression(model, data):
     mse = mean_squared_error(y, y_pred)
     r2 = r2_score(y, y_pred)
 
-    print(f"Linear Regression - Training MSE: {mse:.2f}")
+    print(f"Linear Regression - Validation MSE: {mse:.2f}")
     print(f"Linear Regression - R^2: {r2:.2f}")
+
+    return model

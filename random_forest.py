@@ -3,6 +3,8 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.metrics import mean_squared_error, r2_score
 
+# imlement model tuning
+
 def train_random_forest(data):
     data = pd.get_dummies(data, columns=['cab_type'], drop_first=True)
 
@@ -19,8 +21,8 @@ def train_random_forest(data):
     mse = mean_squared_error(y_train, y_train_pred)
     r2 = r2_score(y_train, y_train_pred)
 
-    print(f"Random Forest - Training Mean Squared Error: {mse:.2f}")
-    print(f"Random Forest - Training R^2 Score: {r2:.2f}")
+    # print(f"Random Forest - Training Mean Squared Error: {mse:.2f}")
+    # print(f"Random Forest - Training R^2 Score: {r2:.2f}")
 
     return rf
 
@@ -47,7 +49,7 @@ def validate_random_forest(model, data):
     mse = mean_squared_error(y, y_pred)
     r2 = r2_score(y, y_pred)
 
-    print(f" Random Forest - Best Hyperparameters: {best_params}")
+    print(f"Random Forest - Best Hyperparameters: {best_params}")
     print(f"Random Forest - Validation Mean Squared Error: {mse:.2f}")
     print(f"Random Forest - Validation R^2 Score: {r2:.2f}")
 

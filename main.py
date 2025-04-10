@@ -2,9 +2,9 @@ import os
 from sklearn.model_selection import train_test_split
 from gradient_boosting import train_gradient_boosting, tune_gradient_boosting
 from import_data import preprocess_data
-from knn_regression import train_knn_regression, validate_knn_model, test_knn_model
+from knn_regression import train_knn_regression, validate_knn_model
 from random_forest import train_random_forest, validate_random_forest
-from linear_regression import train_linear_regression, test_linear_regression
+from linear_regression import train_linear_regression, validate_linear_regression
 
 
 def main():
@@ -39,7 +39,7 @@ def main():
         print("KNN MODEL:\n")
         knn = train_knn_regression(train_data)
         print("NOTE: KNN Regression model training completed successfully.\n")
-        print("-------------------------------------------------------\n")
+        # print("-------------------------------------------------------\n")
         best_knn = validate_knn_model(knn, validation_data)
         print("KNN model validation and hyperparameter tuning completed successfully.")
         print("-------------------------------------------------------\n")
@@ -55,14 +55,17 @@ def main():
         print("RANDOM FOREST MODEL:\n")
         forest = train_random_forest(train_data)
         print("NOTE: Random Forest Model training completed successfully.\n")
-        print("-------------------------------------------------------\n")
+        # print("-------------------------------------------------------\n")
         best_forest = validate_random_forest(forest, validation_data)
-        print("Random Forest Model validation and hyperparameter tuning completed successfully.")
+        print("NOTE: Random Forest Model validation and hyperparameter tuning completed successfully.")
+        print("-------------------------------------------------------\n")
 
         # Linear Regression Model
         print("LINEAR REGRESSION MODEL:\n")
         linear = train_linear_regression(train_data)
         print("NOTE: Linear Regression model training completed successfully.\n")
+        best_linear = validate_linear_regression(linear, validation_data)
+        print("NOTE: Linear Regression model validation completed successfully.")
         print("-------------------------------------------------------\n")
 
 
