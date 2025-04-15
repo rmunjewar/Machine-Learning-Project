@@ -5,6 +5,7 @@ from import_data import preprocess_data
 from knn_regression import train_knn_regression, validate_knn_model
 from random_forest import train_random_forest, validate_random_forest
 from linear_regression import train_linear_regression, validate_linear_regression
+from evaluation import run_evaluation
 
 
 def main():
@@ -48,7 +49,7 @@ def main():
         print("GRADIENT BOOSTING:\n")
         gradient = train_gradient_boosting(train_data)
         print("NOTE: Gradient Boosting model training completed successfully.\n")
-        best_gradieent = tune_gradient_boosting(gradient, validation_data)
+        best_gradient = tune_gradient_boosting(gradient, validation_data)
         print("-------------------------------------------------------\n")
 
         # Random Forest Model
@@ -67,6 +68,16 @@ def main():
         best_linear = validate_linear_regression(linear, validation_data)
         print("NOTE: Linear Regression model validation completed successfully.")
         print("-------------------------------------------------------\n")
+
+        best_models = {
+            'KNN': best_knn,
+            'Gradient Boosting': best_gradient,
+            'Random Forest': best_forest,
+            'Linear Regression': best_linear
+        }
+
+        # Run evaluation
+        best_model_name, best_model, results = run_evaluation(best_models, test_data)
 
 
     except Exception as e:
