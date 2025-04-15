@@ -6,6 +6,7 @@ def run_evaluation(models, test_data):
     print("\nEVALUATION RESULTS:")
     print("-" * 50)
     
+    # Results dictionary
     results = {
         'Model': [],
         'MAE': [],
@@ -14,6 +15,7 @@ def run_evaluation(models, test_data):
         'R²': []
     }
     
+    # Evaluate each model
     for name, model in models.items():
         try:
             if name in ['Random Forest', 'Linear Regression']:
@@ -50,16 +52,18 @@ def run_evaluation(models, test_data):
         except Exception as model_error:
             print(f"Error evaluating {name} model: {model_error}")
     
+
     results_df = pd.DataFrame(results)
     results_df = results_df.sort_values('MAE')
+  
     print("\nModel Comparison:")
     print(results_df)
     
     if len(results_df) > 0:
-        best_model_name = results_df.iloc[0]['Model']
-        print(f"\nBest Model: {best_model_name}")
+        best_model = results_df.iloc[0]['Model']
+        print(f"\nBest Model: {best_model}")
         print(f"MAE: {results_df.iloc[0]['MAE']}")
-        return best_model_name
+        return best_model
     else:
         print("No models were successfully evaluated")
         return None

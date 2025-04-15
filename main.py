@@ -77,7 +77,7 @@ def main():
         }
 
         # Run evaluation
-        best_model_name, best_model, results = run_evaluation(best_models, test_data)
+        best_model = run_evaluation(best_models, test_data)
 
 
     except Exception as e:
