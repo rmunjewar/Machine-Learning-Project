@@ -54,15 +54,36 @@ def run_evaluation(models, test_data):
     
 
     results_df = pd.DataFrame(results)
-    results_df = results_df.sort_values('MAE')
+    results_df['MAE_rank'] = results_df['MAE'].rank()
+    results_df['MSE_rank'] = results_df['MSE'].rank()
+    results_df['RMSE_rank'] = results_df['RMSE'].rank()
+    results_df['R²_rank'] = results_df['R²'].rank(ascending=False)  # For R², higher is better
+    
+    # Calculate average rank across all metrics
+    results_df['Avg_Rank'] = (results_df['MAE_rank'] + 
+                              results_df['MSE_rank'] + 
+                              results_df['RMSE_rank'] + 
+                              results_df['R²_rank']) / 4
+    
+    results_df = results_df.sort_values('Avg_Rank')
+    
+    display_df = results_df.drop(columns=['MAE_rank', 'MSE_rank', 'RMSE_rank', 'R²_rank', 'Avg_Rank'])
   
     print("\nModel Comparison:")
-    print(results_df)
+    print(display_df.to_string(index=False))
+    
+    print("\nDetailed Ranking:")
+    ranking_df = results_df[['Model', 'MAE_rank', 'MSE_rank', 'RMSE_rank', 'R²_rank', 'Avg_Rank']]
+    ranking_df = ranking_df.sort_values('Avg_Rank')
+    print(ranking_df.to_string(index=False))
     
     if len(results_df) > 0:
         best_model = results_df.iloc[0]['Model']
-        print(f"\nBest Model: {best_model}")
-        print(f"MAE: {results_df.iloc[0]['MAE']}")
+        print(f"\nBest Model Overall: {best_model}")
+        print(f"  MAE:  {results_df.iloc[0]['MAE']}")
+        print(f"  MSE:  {results_df.iloc[0]['MSE']}")
+        print(f"  RMSE: {results_df.iloc[0]['RMSE']}")
+        print(f"  R²:   {results_df.iloc[0]['R²']}")
         return best_model
     else:
         print("No models were successfully evaluated")
